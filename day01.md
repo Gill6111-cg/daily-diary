@@ -1,13 +1,13 @@
-# 🚀 MERN Stack Training Diary – Day 01
-**Date:** 22 June 2026
+# MERN Stack Training Diary – Day 01
+Date: 22 June 2026
 
-## 📚 Topic: Introduction to HTML and Basic Webpage Creation
+##  Topic: Introduction to HTML and Basic Webpage Creation
 
 Today was the first day of my MERN Stack training. I was introduced to HTML (HyperText Markup Language), which is the foundation of web development and is used to create the structure of web pages. I learned that every website we visit is built using HTML along with CSS and JavaScript. During the session, I created my first webpage and explored different HTML tags and their uses.
 
 
 
-## 💻 Topics Covered
+##  Topics Covered
 
 ### 1. HTML Document Structure
 I learned the basic structure of an HTML document. Every HTML page starts with `<!DOCTYPE html>`, which tells the browser that the document is an HTML5 file. The `<html>` tag contains the entire webpage. Inside it, the `<head>` section stores information about the webpage, such as the title and character encoding, while the `<body>` section contains all the content that is visible to users.
@@ -53,7 +53,7 @@ I learned that forms are important because they allow users to provide informati
 
 ---
 
-## 🎯 Key Learning Outcomes
+##  Key Learning Outcomes
 - Understood the basic structure of an HTML document.
 - Learned how to use different HTML tags to create and organize webpage content.
 - Gained hands-on experience by building my first webpage from scratch.
@@ -62,4 +62,4 @@ I learned that forms are important because they allow users to provide informati
 ---
 
 
-**Status:** ✅ Day 01 Successfully Completed  
+**Status:**  Day 01 Successfully Completed  
