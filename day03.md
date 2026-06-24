@@ -141,7 +141,7 @@ I understood that data types are important because they determine the kind of in
 
 
 
-## ⚙️ Operators in JavaScript
+##  Operators in JavaScript
 
 After understanding variables and data types, I learned about operators. Operators are special symbols used to perform operations on values and variables.
 
@@ -201,5 +201,5 @@ Practicing these operators helped me understand how JavaScript performs calculat
 - Practiced `alert()` and `console.log()` functions.
 - Understood JavaScript variables, data types, and operators in detail.
 - Gained confidence in writing basic JavaScript programs.
-
+---
 **Status:** Day 03 Successfully Completed
