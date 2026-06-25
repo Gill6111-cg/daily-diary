@@ -315,8 +315,7 @@ for(let i = 1; i <= 5; i++){
     console.log(i);
 }
 ```
-
-### Output
+## Output
 1
 2
 3
@@ -327,13 +326,12 @@ for(let i = 1; i <= 5; i++){
 
 - Understood the concept of decision-making in JavaScript.
 - Learned and practiced `if`, `if-else`, `else-if`, nested `if`, and `switch` statements.
-- Implemented a discount calculator using the switch statement.
 - Learned the purpose and working of loops.
 - Practiced `while`, `do-while`, and `for` loops with examples.
 - Understood the differences between various looping statements.
 - Improved logical thinking and problem-solving skills through programming exercises.
 
 ---
-
+---
 
 **Status:** Day 04 Successfully Completed
