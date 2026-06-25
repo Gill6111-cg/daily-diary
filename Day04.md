@@ -180,7 +180,6 @@ switch(expression){
 
 ### Example
 
-
 let day = 3;
 
 switch(day){
@@ -206,34 +205,6 @@ switch(day){
 The value of `day` is 3, so the third case executes and displays "Wednesday". The `break` statement stops the execution after the matching case is found.
 
 ---
-
-## Discount Calculator Program
-
-During the practical session, I created a discount calculator using a switch statement.
-
-### Code
-
-
-let amount = 500;
-let discount = 0;
-
-switch (true) {
-
-    case (amount < 200):
-        discount = amount * 0.20;
-        break;
-
-    case (amount < 600):
-        discount = amount * 0.40;
-        break;
-
-    default:
-        discount = 70;
-        break;
-}
-
-console.log(discount);
-```
 
 
 
