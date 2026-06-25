@@ -321,7 +321,6 @@ for(let i = 1; i <= 5; i++){
 3
 4
 5
-```
-```
+---
 
-**Status:** Day 04 Successfully Completed
+## **Status:** Day 04 Successfully Completed
