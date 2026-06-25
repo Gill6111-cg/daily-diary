@@ -1,21 +1,21 @@
 # MERN Stack Training Diary – Day 04
 **Date:** 25 June 2026
 
-## 📚Topic: Conditional Statements and Loops in JavaScript
+## Topic: Conditional Statements and Loops in JavaScript
 
-Today was the fourth day of my MERN Stack training, and the entire session was focused on understanding the decision-making and repetition capabilities of JavaScript. I learned how programs can make decisions based on different conditions and how repetitive tasks can be performed efficiently using loops.
-The session began with conditional statements, which allow a program to execute different blocks of code depending on whether a condition is true or false. After that, I learned about loops, which are used to execute a block of code repeatedly until a specific condition is met.
-These concepts are very important because they form the foundation of programming logic and are used in almost every real-world application.
+Today was the fourth day of my MERN Stack training. The session mainly focused on understanding how JavaScript makes decisions and performs repetitive tasks. These concepts are very important because they form the foundation of programming logic and are used in almost every application and website.
+
+At the beginning of the session, I learned about conditional statements, which help a program make decisions based on different situations. After that, I learned about loops, which are used to execute the same block of code multiple times without writing it repeatedly. Through theory and coding practice, I understood how these concepts help developers write efficient and logical programs.
 
 ---
 
-##  Conditional Statements in JavaScript
+## Conditional Statements in JavaScript
 
-Conditional statements help a program make decisions based on certain conditions. They allow different code blocks to run depending on the situation.
+Conditional statements allow a program to execute different blocks of code depending on whether a condition is true or false. They are used whenever a program needs to make decisions.
 
 ### 1. If Statement
 
-The `if` statement is the simplest conditional statement. It executes a block of code only when the specified condition is true.
+The `if` statement is the simplest conditional statement. It checks whether a condition is true. If the condition is true, the code inside the `if` block executes. If the condition is false, the code is skipped.
 
 ### Syntax
 
@@ -37,13 +37,13 @@ if(age >= 18){
 
 ### Explanation
 
-In this example, the condition `age >= 18` is true, so the message is displayed. If the condition were false, nothing would be executed.
+In this example, the condition `age >= 18` is true, so the message is displayed on the console. If the age were less than 18, nothing would be printed because there is no alternative block provided.
 
 ---
 
 ### 2. If-Else Statement
 
-The `if-else` statement is used when there are two possible outcomes. If the condition is true, the `if` block executes; otherwise, the `else` block executes.
+The `if-else` statement is used when there are two possible outcomes. If the condition is true, one block of code executes; otherwise, another block executes.
 
 ### Syntax
 
@@ -58,7 +58,7 @@ else{
 
 ### Example
 
-
+`
 let age = 16;
 
 if(age >= 18){
@@ -71,13 +71,13 @@ else{
 
 ### Explanation
 
-Since the age is less than 18, the condition becomes false and the `else` block executes.
+Since the value of age is 16, the condition becomes false. Therefore, the code inside the `else` block executes and displays "Not eligible to vote".
 
 ---
 
 ### 3. Else-If Ladder
 
-The `else-if` ladder is used when multiple conditions need to be checked.
+The `else-if` ladder is used when multiple conditions need to be checked. The program checks each condition one by one until it finds a true condition.
 
 ### Syntax
 
@@ -114,13 +114,13 @@ else{
 
 ### Explanation
 
-The program checks conditions one by one. As soon as a true condition is found, its corresponding block executes and the remaining conditions are skipped.
+The program first checks whether marks are greater than or equal to 90. Since the condition is false, it checks the next condition. The condition `marks >= 70` is true, so Grade B is displayed and the remaining conditions are skipped.
 
 ---
 
 ### 4. Nested If-Else
 
-A nested if-else means placing one if statement inside another if statement.
+A nested if-else means placing one `if` statement inside another `if` statement. This is useful when a second condition needs to be checked only after the first condition becomes true.
 
 ### Syntax
 
@@ -133,6 +133,7 @@ if(condition1){
 ```
 
 ### Example
+
 
 let age = 20;
 let hasLicense = true;
@@ -148,17 +149,17 @@ if(age >= 18){
 else{
     console.log("You are underage");
 }
-
+```
 
 ### Explanation
 
-The second condition is checked only if the first condition is true.
+In this example, the first condition checks whether the person is 18 years old or above. If that condition is true, the program checks whether the person has a driving license. Since both conditions are true, the message "You can drive" is displayed.
 
 ---
 
 ### 5. Switch Statement
 
-The switch statement is used when multiple cases need to be checked against a single value. It makes code cleaner and easier to read compared to multiple if-else statements.
+The switch statement is used when multiple conditions need to be checked against a single value. It makes the code cleaner and easier to read compared to writing many `if-else` statements.
 
 ### Syntax
 
@@ -200,11 +201,15 @@ switch(day){
 }
 ```
 
+### Explanation
 
+The value of `day` is 3, so the third case executes and displays "Wednesday". The `break` statement stops the execution after the matching case is found.
 
-##  Discount Calculator Program
+---
 
-During the practical session, I created a discount calculator using the `switch` statement.
+## Discount Calculator Program
+
+During the practical session, I created a discount calculator using a switch statement.
 
 ### Code
 
@@ -231,28 +236,18 @@ console.log(discount);
 ```
 
 
-```
 
-Output:
-
-
-200
-```
-
-This activity helped me understand how conditions can be used in real-world scenarios such as shopping and billing systems.
-
----
-
-##  Loops in JavaScript
+## Loops in JavaScript
 
 After learning conditional statements, I moved on to loops.
-I learned that loops are used when we need to execute the same block of code multiple times. Instead of writing the same code repeatedly, loops allow us to automate repetitive tasks efficiently.
+
+I learned that loops are used when we need to execute the same block of code repeatedly. Instead of writing the same code many times, loops allow us to perform repetitive tasks efficiently and reduce the amount of code.
 
 ---
 
 ### 1. While Loop
 
-The `while` loop executes a block of code as long as the condition remains true.
+The `while` loop executes a block of code as long as the specified condition remains true.
 
 ### Syntax
 
@@ -273,7 +268,8 @@ while(i <= 5){
 }
 ```
 
-### Output 
+### Output
+
 
 1
 2
@@ -284,13 +280,13 @@ while(i <= 5){
 
 ### Explanation
 
-The loop continues until the condition `i <= 5` becomes false.
+The loop starts with the value of `i` equal to 1. After each iteration, the value of `i` increases by one. The loop continues until the condition `i <= 5` becomes false.
 
 ---
 
 ### 2. Do-While Loop
 
-The `do-while` loop executes the code block at least once, even if the condition is false.
+The `do-while` loop is similar to the while loop, but it guarantees that the code block will execute at least once.
 
 ### Syntax
 
@@ -325,14 +321,13 @@ while(i <= 5);
 
 ### Explanation
 
-The code inside the `do` block runs first, and then the condition is checked.
-This is the main difference between `while` and `do-while`.
+In a do-while loop, the code executes first and the condition is checked afterward. This means the loop will run at least one time even if the condition is false.
 
 ---
 
 ### 3. For Loop
 
-The `for` loop is the most commonly used loop in JavaScript. It is used when the number of iterations is known in advance.
+The `for` loop is the most commonly used loop in programming. It is generally used when the number of iterations is known beforehand.
 
 ### Syntax
 
@@ -340,7 +335,7 @@ The `for` loop is the most commonly used loop in JavaScript. It is used when the
 for(initialization; condition; increment/decrement){
     // code
 }
-
+```
 
 ### Example
 
@@ -348,41 +343,16 @@ for(initialization; condition; increment/decrement){
 for(let i = 1; i <= 5; i++){
     console.log(i);
 }
-
+```
 
 ### Output
-
-
 1
 2
 3
 4
 5
 ```
-
-### Explanation
-
-The for loop consists of three parts:
-
-1. Initialization – Starts the loop variable.
-2. Condition – Checks whether the loop should continue.
-3. Increment/Decrement – Updates the loop variable after each iteration.
-
-Because all three parts are written in one line, the for loop is considered more compact and easier to use.
-
----
-
-##  Difference Between While, Do-While, and For Loop
-
-| While Loop | Do-While Loop | For Loop |
-|------------|---------------|----------|
-| Condition checked before execution | Condition checked after execution | Condition checked before execution |
-| May execute zero times | Executes at least once | May execute zero times |
-| Suitable when iterations are unknown | Suitable when code must run at least once | Suitable when iterations are known |
-
----
-
-##  Key Learning Outcomes
+## Key Learning Outcomes
 
 - Understood the concept of decision-making in JavaScript.
 - Learned and practiced `if`, `if-else`, `else-if`, nested `if`, and `switch` statements.
@@ -395,4 +365,4 @@ Because all three parts are written in one line, the for loop is considered more
 ---
 
 
-**Status:** ✅ Day 04 Successfully Completed
+**Status:** Day 04 Successfully Completed
