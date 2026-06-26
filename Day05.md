@@ -1,7 +1,7 @@
 # MERN Stack Training Diary – Day 05
 **Date:** 26 June 2026
 
-## 📚 Topic: Functions and Arrays in JavaScript
+##  Topic: Functions and Arrays in JavaScript
 
 Today was the fifth day of my MERN Stack training, and the session focused on two important JavaScript concepts: **Functions** and **Arrays**. Both of these concepts are widely used in programming because they help developers write clean, organized, and efficient code.
 
@@ -9,7 +9,7 @@ The session started with functions, where I learned how to create reusable block
 
 ---
 
-# 💻 Functions in JavaScript
+#  Functions in JavaScript
 
 The first topic of today's session was **Functions**.
 
@@ -205,7 +205,7 @@ The **inner()** function exists inside the **outer()** function and can only be 
 
 ---
 
-# 📦 Arrays in JavaScript
+#  Arrays in JavaScript
 
 The second major topic of today's session was **Arrays**.
 
@@ -431,7 +431,7 @@ console.log(fruits.length);
 
 ---
 
-# 🎯 Key Learning Outcomes
+#  Key Learning Outcomes
 
 - Understood the concept and importance of functions in JavaScript.
 - Learned the structure of a function and the difference between parameters and arguments.
@@ -443,8 +443,6 @@ console.log(fruits.length);
 
 ---
 
-# 🌟 Reflection
 
-Today's session was very informative because I learned two of the most important concepts in JavaScript. Functions helped me understand how programmers avoid writing repetitive code by creating reusable blocks of logic. Learning different types of functions also gave me an introduction to modern JavaScript coding practices. The second half of the session on arrays was equally interesting because I learned how multiple values can be stored and managed efficiently using a single variable. Practicing different array methods made it easier to understand how data can be added, removed, searched, and updated. Overall, today's training improved my problem-solving skills and increased my confidence in writing structured JavaScript programs.
 
 **Status:** ✅ Day 05 Successfully Completed
