@@ -530,4 +530,4 @@ Changes the text displayed inside the selected HTML element.
 
 
 
-**Status:** ✅ Day 06 Successfully Completed
+**Status:** Day 06 Successfully Completed
