@@ -1,5 +1,5 @@
 # MERN Stack Training Diary – Day 06
-**Date:** 27 June 2026
+**Date:** 28 June 2026
 
 ##  Topic: Advanced Array Methods, Objects, and DOM Manipulation in JavaScript
 
