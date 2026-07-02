@@ -1,5 +1,5 @@
 #  MERN Stack Training Diary – Day 08
-**Date:** 29 June 2026
+**Date:** 1 July 2026
 
 #  Topic: Local Storage in JavaScript and To-Do List Project
 
