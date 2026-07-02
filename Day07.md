@@ -1,5 +1,5 @@
 # 🚀 MERN Stack Training Diary – Day 07
-**Date:** 28 June 2026
+**Date:** 30 June 2026
 
 ##  Topic: Document Object Model (DOM) and Interactive JavaScript Programs
 
