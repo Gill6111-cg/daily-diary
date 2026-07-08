@@ -1,4 +1,4 @@
-# 🚀 MERN Stack Training Diary – Day 13
+#  MERN Stack Training Diary – Day 13
 **Date:** 08 July 2026
 
 #  Topic: Building a Multi-Page React Website using React Router, Layout Components, and Outlet
