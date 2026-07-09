@@ -1,4 +1,4 @@
-# 🚀 MERN Stack Training Diary – Day 14
+# MERN Stack Training Diary – Day 14
 **Date:** 08 July 2026
 
 ##  Topic: Navigation Using Link in React Router DOM and Lottie React Animations
