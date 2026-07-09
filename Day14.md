@@ -161,4 +161,4 @@ When I ran the project, the robot animation appeared on the Sign In page and pla
 ---
 
 
-**Status:** ✅ **Day 14 Successfully Completed**
+**Status:**  **Day 14 Successfully Completed**
