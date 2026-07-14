@@ -304,4 +304,4 @@ This practical activity helped me understand how data is sent from the client to
 
 ---
 
-**Status:** ✅ Day 17 Successfully Completed
+**Status:**  Day 17 Successfully Completed
