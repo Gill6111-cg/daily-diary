@@ -1,4 +1,4 @@
-# 🚀 MERN Stack Training Diary – Day 23
+#  MERN Stack Training Diary – Day 23
 **Date:** 22 July 2026
 
 #  Topic: Implementing Edit and Delete Functionality in a MERN Application
@@ -88,7 +88,7 @@ This route allows the frontend to send a DELETE request to remove a specific use
 
 ---
 
-# Creating Delete Service
+#  Creating Delete Service
 
 Next, I created a reusable service function in **userServices.js** to call the Delete API using Axios.
 
@@ -228,145 +228,21 @@ I used:
 - `useState()` to store the form values.
 - `useNavigate()` to return to the Home page after updating the user.
 
-### EditForm.jsx
+### Main Concepts Used
 
-import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { editUser, getAllUsers } from "../services/userServices";
+- useState
+- useEffect
+- useParams
+- useNavigate
+- Axios
+- Controlled Forms
+- API Integration
 
-function EditForm() {
-  const navigate = useNavigate();
-  const { id } = useParams();
+The Edit form automatically fills the existing user details, allowing the user to update them easily.
 
-  const [formData, setFormData] = useState({
-    name: "",
-    age: "",
-  });
-
-  // Fetch user data and fill form
-  const fetchUser = async () => {
-    try {
-      const res = await getAllUsers();
-      const user = res.data.users.find((u) => u._id === id);
-
-      if (user) {
-        setFormData({
-          name: user.name || "",
-          age: user.age || "",
-        });
-      }
-    } catch (error) {
-      console.log(error);
-      alert("Failed to fetch user");
-    }
-  };
-
-  useEffect(() => {
-    fetchUser();
-  }, [id]);
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      await editUser(id, formData);
-      alert("User updated successfully");
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-      alert("Failed to update user");
-    }
-  };
-
-  return (
-    <div
-      style={{
-        height: "100vh",
-        backgroundColor: "#f4f4f4",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <div
-        style={{
-          width: "380px",
-          backgroundColor: "white",
-          padding: "30px",
-          borderRadius: "10px",
-          boxShadow: "0px 0px 15px rgba(0,0,0,0.2)",
-          textAlign: "center",
-        }}
-      >
-        <h1 style={{ marginBottom: "20px", color: "#333" }}>
-          Edit User
-        </h1>
-
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Enter Name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            style={{
-              width: "100%",
-              padding: "12px",
-              marginBottom: "15px",
-              border: "1px solid #ccc",
-              borderRadius: "5px",
-              fontSize: "16px",
-            }}
-          />
-
-          <input
-            type="number"
-            placeholder="Enter Age"
-            name="age"
-            value={formData.age}
-            onChange={handleChange}
-            style={{
-              width: "100%",
-              padding: "12px",
-              marginBottom: "20px",
-              border: "1px solid #ccc",
-              borderRadius: "5px",
-              fontSize: "16px",
-            }}
-          />
-
-          <button
-            type="submit"
-            style={{
-              width: "100%",
-              padding: "12px",
-              backgroundColor: "#ff6600",
-              color: "white",
-              border: "none",
-              borderRadius: "5px",
-              fontSize: "18px",
-              cursor: "pointer",
-            }}
-          >
-            Update User
-          </button>
-        </form>
-      </div>
-    </div>
-  );
-}
-
-export default EditForm;
 ---
 
-# 🏠 Updating the Home Page
+#  Updating the Home Page
 
 Finally, I updated **Home.jsx** by adding **Edit** and **Delete** buttons inside the Users table.
 
@@ -403,9 +279,87 @@ When clicked:
 
 ---
 
+#  Complete Working Flow
 
+I understood the complete flow of Edit and Delete operations in a MERN application.
 
-# Key Learning Outcomes
+### Edit Flow
+
+```
+Edit Button
+
+        ↓
+
+Navigate to EditForm
+
+        ↓
+
+Fetch Existing User Data
+
+        ↓
+
+Update Form
+
+        ↓
+
+Click Update
+
+        ↓
+
+Axios PUT Request
+
+        ↓
+
+Express Route
+
+        ↓
+
+Controller
+
+        ↓
+
+MongoDB Updated
+
+        ↓
+
+Navigate Back to Home
+```
+
+---
+
+### Delete Flow
+
+```
+Delete Button
+
+        ↓
+
+Confirmation Message
+
+        ↓
+
+Axios DELETE Request
+
+        ↓
+
+Express Route
+
+        ↓
+
+Controller
+
+        ↓
+
+MongoDB Deletes User
+
+        ↓
+
+Updated User List Displayed
+```
+
+---
+
+#  Key Learning Outcomes
 
 - Added Edit and Delete buttons to the Users table.
 - Created a Delete API using `findByIdAndDelete()`.
@@ -422,4 +376,4 @@ When clicked:
 ---
 
 
-**Status:** ✅ Day 23 Successfully Completed
+**Status:**  Day 23 Successfully Completed
