@@ -1,379 +1,397 @@
 #  MERN Stack Training Diary – Day 23
 **Date:** 22 July 2026
 
-#  Topic: Implementing Edit and Delete Functionality in a MERN Application
+#  Topic: Edit and Delete User Functionality using React, Express, MongoDB, and Axios
 
-Today was the twenty-third day of my MERN Stack training. In today's session, I completed the remaining CRUD operations by implementing **Edit** and **Delete** functionality in my MERN application. I added **Edit** and **Delete** buttons to the Users table on the Home page and created the required backend APIs, frontend services, and React components to update and remove user records from the MongoDB database.
+Today was the twenty-third day of my MERN Stack training. The main focus of today's session was to implement the **Update (Edit)** and **Delete** operations of CRUD in my MERN application. I learned how to create backend APIs for editing and deleting users from the MongoDB database and then connected those APIs with the React frontend using Axios services.
 
-This session helped me understand how data can be modified and deleted through the frontend while keeping the database synchronized.
-
----
-
-#  Adding Edit and Delete Buttons
-
-The first task of today's session was to add **Edit** and **Delete** buttons for every user displayed in the Users table.
-
-I learned that each button performs a different operation:
-
-- **Edit** button opens a new page where the selected user's information can be updated.
-- **Delete** button removes the selected user from the MongoDB database.
-
-This made the application fully interactive and completed all CRUD operations.
+I also created an **Edit User Form** that automatically displays the existing details of the selected user, allowing them to update their information. On the Home page, I added **Edit** and **Delete** buttons for every user displayed in the table. This completed the CRUD (Create, Read, Update, Delete) operations in my project and gave me a better understanding of full-stack application development.
 
 ---
 
-#  Creating the Delete User API
+#  Update (Edit) Operation
 
-After adding the Delete button, I created a backend API to delete a user using their MongoDB ID.
+The first concept I learned today was the **Update** operation.
 
-I learned that MongoDB automatically assigns a unique `_id` to every document, which is used to identify the exact record that needs to be deleted.
+Updating data means modifying the existing information stored in the database. To update a particular user, the application requires the user's unique **MongoDB ID**, which is passed through the URL.
 
-### Controller (userController.js)
+I learned that Express provides route parameters using `req.params`, while the updated information entered by the user is available through `req.body`.
+
+The update operation is performed using Mongoose's:
+
+```javascript
+findByIdAndUpdate()
+```
+
+### Syntax
+
+```javascript
+Model.findByIdAndUpdate(id, updatedData, {
+    new: true
+});
+```
+
+The option:
+
+```javascript
+new: true
+```
+
+returns the updated document after modification.
+
+---
+
+#  Delete Operation
+
+The next concept I learned was deleting records from MongoDB.
+
+To delete a user, I again used the user's unique **_id**.
+
+Mongoose provides the following method:
+
+```javascript
+findByIdAndDelete()
+```
+
+### Syntax
+
+```javascript
+Model.findByIdAndDelete(id);
+```
+
+This permanently removes the selected document from the database.
+
+---
+
+#  Backend API – Delete User
+
+I created a new API in **userController.js** to delete a user from MongoDB.
+
+### userController.js
 
 ```javascript
 export const deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params;
 
-    try{
+    const user = await User.findByIdAndDelete(id);
 
-        const { id } = req.params;
-
-        const user = await User.findByIdAndDelete(id);
-
-        if(user){
-
-            res.status(200).json({
-                message: "User deleted",
-            });
-
-        }
-        else{
-
-            res.status(404).json({
-                message: "User not found",
-            });
-
-        }
-
+    if (user) {
+      res.status(200).json({
+        message: "User deleted",
+      });
+    } else {
+      res.status(404).json({
+        message: "User not found",
+      });
     }
-    catch(error){
-
-        res.status(500).json({
-            error: error.message,
-        });
-
-    }
-
-}
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    });
+  }
+};
 ```
 
-### Working
+### Explanation
 
-- Receives the user ID from the URL.
-- Searches for the user using `findByIdAndDelete()`.
-- Deletes the record if it exists.
-- Returns a success message.
-- Displays an error if the user is not found.
+- Reads the user's ID from the URL.
+- Deletes the user from MongoDB.
+- Sends a success message if deletion is successful.
+- Returns an error message if the user is not found.
 
 ---
 
-#  Adding Delete Route
+#  Delete Route
 
-After creating the controller, I added the route inside **userRoutes.js**.
+After creating the controller, I added its route in **userRoutes.js**.
 
 ```javascript
 router.delete("/:id", deleteUser);
 ```
 
-This route allows the frontend to send a DELETE request to remove a specific user.
+This route allows the frontend to send a DELETE request for a specific user.
 
 ---
 
-#  Creating Delete Service
+#  Delete Service (Frontend)
 
-Next, I created a reusable service function in **userServices.js** to call the Delete API using Axios.
+Next, I created the delete service inside **userServices.js**.
 
 ```javascript
 export const deleteUser = async (id) => {
-
-    try{
-
-        return await axios.delete(
-            `http://localhost:5000/users/${id}`
-        );
-
-    }
-    catch(error){
-
-        console.log(error);
-        throw error;
-
-    }
-
+  try {
+    return await axios.delete(
+      `http://localhost:5000/users/${id}`
+    );
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 };
 ```
 
-This service keeps API calls separate from React components and improves code organization.
+### Explanation
+
+This service sends a DELETE request from React to the backend API using Axios.
 
 ---
 
-#  Creating the Edit User API
+#  Backend API – Edit User
 
-After completing the Delete functionality, I created an API to update user information.
+After completing the delete functionality, I created the **Edit User API**.
 
-I learned that Mongoose provides the `findByIdAndUpdate()` method, which updates an existing document using its unique ID.
-
-### Controller (userController.js)
+### userController.js
 
 ```javascript
 export const editUser = async (req, res) => {
+  try {
+    const { id } = req.params;
 
-    try{
+    const user = await User.findByIdAndUpdate(
+      id,
+      req.body,
+      {
+        new: true,
+      }
+    );
 
-        const { id } = req.params;
-
-        const user = await User.findByIdAndUpdate(
-            id,
-            req.body,
-            { new: true }
-        );
-
-        if(user){
-
-            res.status(200).json({
-                message: "User updated successfully",
-                user,
-            });
-
-        }
-        else{
-
-            res.status(404).json({
-                message: "User not found",
-            });
-
-        }
-
+    if (user) {
+      res.status(200).json({
+        message: "User updated successfully",
+        user,
+      });
+    } else {
+      res.status(404).json({
+        message: "User not found",
+      });
     }
-    catch(error){
-
-        res.status(500).json({
-            error: error.message,
-        });
-
-    }
-
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    });
+  }
 };
 ```
 
-### Working
+### Explanation
 
-- Receives the user ID.
-- Updates the record using the new data received from the frontend.
-- Returns the updated document.
-- Sends an error if no matching user is found.
+- Receives the user's ID.
+- Receives updated data from the frontend.
+- Updates the database.
+- Returns the updated user object.
 
 ---
 
-#  Adding Edit Route
+#  Edit Route
 
-I then added the Edit route inside **userRoutes.js**.
+I added the edit route in **userRoutes.js**.
 
 ```javascript
 router.put("/:id", editUser);
 ```
 
-This route handles HTTP PUT requests for updating user details.
+This route handles all update requests.
 
 ---
 
-#  Creating Edit Service
+#  Edit Service (Frontend)
 
-I created another service function inside **userServices.js** for updating user information.
+Next, I connected the update API with React.
+
+### userServices.js
 
 ```javascript
 export const editUser = async (id, userData) => {
-
-    try{
-
-        return await axios.put(
-            `http://localhost:5000/users/${id}`,
-            userData
-        );
-
-    }
-    catch(error){
-
-        console.log(error);
-        throw error;
-
-    }
-
+  try {
+    return await axios.put(
+      `http://localhost:5000/users/${id}`,
+      userData
+    );
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 };
 ```
 
-This service sends updated user data to the backend.
+### Explanation
+
+This service sends updated user information to the backend using Axios.
 
 ---
 
-#  Creating the EditForm Component
+#  Creating EditForm Component
 
-After completing the backend APIs, I created a new React page named **EditForm.jsx**.
+After creating the APIs, I created a new page named **EditForm.jsx**.
 
-This page opens whenever the Edit button is clicked.
+The purpose of this page is to:
 
-I used:
+- Display the selected user's existing details.
+- Allow the user to edit them.
+- Submit the updated information.
+- Redirect back to the Home page after updating.
+
+### EditForm.jsx
+
+```jsx
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { editUser, getAllUsers } from "../services/userServices";
+
+function EditForm() {
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+  const [formData, setFormData] = useState({
+    name: "",
+    age: "",
+  });
+
+  const fetchUser = async () => {
+    try {
+      const res = await getAllUsers();
+
+      const user = res.data.users.find(
+        (u) => u._id === id
+      );
+
+      if (user) {
+        setFormData({
+          name: user.name,
+          age: user.age,
+        });
+      }
+    } catch (error) {
+      alert("Failed to fetch user");
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, [id]);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await editUser(id, formData);
+
+      alert("User updated successfully");
+
+      navigate("/");
+    } catch (error) {
+      alert("Failed to update user");
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+      />
+
+      <input
+        name="age"
+        value={formData.age}
+        onChange={handleChange}
+      />
+
+      <button>Update User</button>
+    </form>
+  );
+}
+
+export default EditForm;
+```
+
+### Explanation
+
+In this component, I learned:
 
 - `useParams()` to get the user ID from the URL.
 - `useEffect()` to fetch existing user data.
-- `useState()` to store the form values.
-- `useNavigate()` to return to the Home page after updating the user.
-
-### Main Concepts Used
-
-- useState
-- useEffect
-- useParams
-- useNavigate
-- Axios
-- Controlled Forms
-- API Integration
-
-The Edit form automatically fills the existing user details, allowing the user to update them easily.
+- `useState()` to manage form data.
+- `navigate()` to redirect after updating.
+- Controlled form inputs.
 
 ---
 
-#  Updating the Home Page
+#  Updating Home.jsx
 
-Finally, I updated **Home.jsx** by adding **Edit** and **Delete** buttons inside the Users table.
+After completing the Edit page, I modified **Home.jsx** by adding **Edit** and **Delete** buttons for every user.
 
-### Edit Button
+### Home.jsx
 
 ```jsx
 <button
-    onClick={() => navigate(`/edit/${user._id}`)}
+  onClick={() =>
+    navigate(`/edit/${user._id}`)
+  }
 >
-    Edit
+  Edit
 </button>
-```
 
-When clicked, it opens the **EditForm** page with the selected user's ID.
-
----
-
-### Delete Button
-
-```jsx
 <button
-    onClick={() => handleDelete(user._id)}
+  onClick={() =>
+    handleDelete(user._id)
+  }
 >
-    Delete
+  Delete
 </button>
 ```
 
-When clicked:
+### Explanation
 
-- A confirmation message appears.
-- If confirmed, the Delete API is called.
-- The user is removed from the database.
-- The table refreshes automatically.
+- **Edit Button**
+  - Opens the EditForm page.
+  - Passes the selected user's ID.
 
----
-
-#  Complete Working Flow
-
-I understood the complete flow of Edit and Delete operations in a MERN application.
-
-### Edit Flow
-
-```
-Edit Button
-
-        ↓
-
-Navigate to EditForm
-
-        ↓
-
-Fetch Existing User Data
-
-        ↓
-
-Update Form
-
-        ↓
-
-Click Update
-
-        ↓
-
-Axios PUT Request
-
-        ↓
-
-Express Route
-
-        ↓
-
-Controller
-
-        ↓
-
-MongoDB Updated
-
-        ↓
-
-Navigate Back to Home
-```
+- **Delete Button**
+  - Calls the delete API.
+  - Removes the selected user from the database.
+  - Refreshes the user list automatically.
 
 ---
 
-### Delete Flow
 
-```
-Delete Button
 
-        ↓
 
-Confirmation Message
 
-        ↓
 
-Axios DELETE Request
 
-        ↓
 
-Express Route
 
-        ↓
-
-Controller
-
-        ↓
-
-MongoDB Deletes User
-
-        ↓
-
-Updated User List Displayed
-```
 
 ---
 
 #  Key Learning Outcomes
 
-- Added Edit and Delete buttons to the Users table.
-- Created a Delete API using `findByIdAndDelete()`.
-- Created an Edit API using `findByIdAndUpdate()`.
+- Learned the Update (PUT) operation in MongoDB.
+- Learned the Delete (DELETE) operation in MongoDB.
+- Created the Delete User API.
+- Created the Edit User API.
 - Added PUT and DELETE routes in Express.
-- Created reusable Axios service functions for Edit and Delete operations.
-- Learned how to use `useParams()` to access route parameters.
+- Connected backend APIs with React using Axios services.
+- Created an Edit User form using React.
+- Used `useParams()` to read dynamic route parameters.
 - Used `useNavigate()` for page navigation.
-- Created a separate `EditForm.jsx` component for updating user details.
-- Learned how to prefill form data before editing.
-- Refreshed the user list automatically after deleting a record.
-- Completed all CRUD operations (Create, Read, Update, Delete) in the MERN application.
+- Used `useEffect()` to fetch existing user data.
+- Added Edit and Delete buttons to the Home page.
+- Completed all CRUD operations in the MERN application.
 
 ---
+
+
 
 
 **Status:**  Day 23 Successfully Completed
